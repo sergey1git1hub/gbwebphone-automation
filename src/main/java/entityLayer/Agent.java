@@ -31,7 +31,7 @@ public class Agent {
         BrowserFactory browserFactory = new BrowserFactory();
         this.driver = browserFactory.getBrowser(remote);
         this.username = username;
-        this.group = group;
+        this.group = group; 
         this.language = language;
     }
 
