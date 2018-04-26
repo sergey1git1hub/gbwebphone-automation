@@ -14,7 +14,7 @@
 
     <test name="login" preserve-order="true" parallel="false">
         <classes>
-            <class name="entityLayer.AgentTest"/>
+            <class name="uiLayer.login.WebphoneLoginPageTest"/>
         </classes>
     </test>
 
