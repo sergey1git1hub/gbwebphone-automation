@@ -28,7 +28,7 @@ public class PropertiesLoader {
                 String value = prop.getProperty(name);
                 if (System.getProperty(name) == null) {
                     System.setProperty(name, value);
-                    //nicePrint(name + "=" + System.getProperty(name));
+                    nicePrint(name + "=" + System.getProperty(name));
                 }
 
             }

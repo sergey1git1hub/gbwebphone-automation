@@ -5,12 +5,7 @@
     <test name="utils" preserve-order="true" parallel="false">
         <classes>
             <class name="utils.PropertiesLoader"/>
-        </classes>
-    </test>
-
-    <test name="login" preserve-order="true" parallel="false">
-        <classes>
-            <class name="uiLayer.login.WebphoneLoginPageTest"/>
+            <class name="utils.SystemInfoTest"/>
         </classes>
     </test>
 
@@ -19,4 +14,11 @@
             <class name="configs.BeforeAfterSuiteTest"/>
         </classes>
     </test>
+
+    <!--<test name="login" preserve-order="true" parallel="false">
+        <classes>
+            <class name="uiLayer.login.WebphoneLoginPageTest"/>
+        </classes>
+    </test>-->
+
 </suite>
