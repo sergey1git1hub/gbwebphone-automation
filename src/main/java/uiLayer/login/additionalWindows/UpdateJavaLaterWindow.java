@@ -13,10 +13,12 @@ public class UpdateJavaLaterWindow {
     public void updateLater() {
         Thread thread2 = new Thread() {
             public void run() {
-                try{
-                sikuliAction.sikuliClickElement("checkbox_doNotAskAgain");
-                sikuliAction.sikuliClickElement("option_updateJavaLater");
-                } catch (Exception e){
+                try {
+
+                    sikuliAction.sikuliClickElement("option_updateJavaLater",2);
+                    sikuliAction.sikuliClickElement("checkbox_doNotAskAgain",2);
+
+                } catch (Exception e) {
                 }
             }
 
