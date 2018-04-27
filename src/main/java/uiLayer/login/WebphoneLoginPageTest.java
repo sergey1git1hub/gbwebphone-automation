@@ -57,10 +57,10 @@ public class WebphoneLoginPageTest {
 
 
    //Do you want to run this application prompt
-    /*@Test
+    @Test
     private void testIeLoginLocalVersion1() throws Exception {
         testWebphoneLoginPage("ie", "1", false);
-    }*/
+    }
 
 
 
