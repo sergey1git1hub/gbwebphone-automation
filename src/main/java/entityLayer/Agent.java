@@ -1,12 +1,7 @@
 package entityLayer;
 
 import configs.BrowserFactory;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import uiLayer.login.SelectGroupPage;
 import uiLayer.login.WebphoneLoginPage;
 import uiLayer.webphonePanel.WebphonePanel;
@@ -48,14 +43,14 @@ public class Agent {
     }
 
     public void login() throws Exception {
-        WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage();
-        SelectGroupPage selectGroupPage = new SelectGroupPage();
+        WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
+        SelectGroupPage selectGroupPage = new SelectGroupPage(driver);
         WebphonePanel webphonePanel = new WebphonePanel(driver);
 
-        webphoneLoginPage.openWebphone(driver);
-        webphoneLoginPage.changeLanguage(driver, language);
-        webphoneLoginPage.login(driver, username);
-        selectGroupPage.selectGroup(driver, group);
+        webphoneLoginPage.openWebphone();
+        webphoneLoginPage.changeLanguage(language);
+        webphoneLoginPage.login(username);
+        selectGroupPage.selectGroup(group);
         webphonePanel.checkStatus(initialStatus, 30);
 
         loggingService.log("Login to webphone as angent" + username + "/" + group +

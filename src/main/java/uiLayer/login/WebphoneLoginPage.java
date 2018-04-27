@@ -24,8 +24,13 @@ public class WebphoneLoginPage {
     private String webphoneVersion = System.getProperty("webphoneVersion");
     private String webphone1Url = System.getProperty("webphone1Url");
     private String webphone2Url = System.getProperty("webphone2Url");
+    private WebDriver driver;
 
-    public void openWebphone(WebDriver driver) {
+    public WebphoneLoginPage(WebDriver driver){
+        this.driver = driver;
+    }
+
+    public void openWebphone() {
         driver.manage().window().maximize();
         if (webphoneVersion.equalsIgnoreCase("1")) {
             driver.get(webphone1Url);
@@ -40,7 +45,7 @@ public class WebphoneLoginPage {
 
     }
 
-    public void changeLanguage(WebDriver driver, String language){
+    public void changeLanguage(String language){
         By buttonConnectLable = By.cssSelector("#btn_connect > span.ui-button-text.ui-c");
         WebElement buttonConnectLableElement = driver.findElement(buttonConnectLable);
         if(buttonConnectLableElement.getText().equalsIgnoreCase("connect")){
@@ -56,7 +61,7 @@ public class WebphoneLoginPage {
         language_en.click();
     }
 
-    public void login(WebDriver driver, String usernameValue) throws InterruptedException, IOException {
+    public void login(String usernameValue) throws InterruptedException, IOException {
         Waiter waiter = new Waiter();
         By byNameU = By.cssSelector("[name=username_input]");
         WebDriverWait waitForUsername = new WebDriverWait(driver, 5);

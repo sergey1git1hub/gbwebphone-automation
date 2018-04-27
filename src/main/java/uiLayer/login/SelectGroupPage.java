@@ -14,10 +14,15 @@ import static java.lang.Thread.sleep;
  * Created by SChubuk on 19.04.2018.
  */
 public class SelectGroupPage {
+    private WebDriver driver;
+
+    public SelectGroupPage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     Waiter waiter = new Waiter();
 
-    public void selectGroup(WebDriver driver, String group) {
+    public void selectGroup(String group) {
         WebDriverWait waitForButtonContinue = new WebDriverWait(driver, 10);
         waitForButtonContinue.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#btn_continue > span.ui-button-text.ui-c")));
         WebDriverWait waitForGroupList = new WebDriverWait(driver, 10);

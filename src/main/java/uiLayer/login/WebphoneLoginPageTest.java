@@ -17,11 +17,11 @@ public class WebphoneLoginPageTest {
         System.setProperty("webphoneVersion", webphoneVersion);
         BrowserFactory browserFactory = new BrowserFactory();
         driver = browserFactory.getBrowser(remote);
-        WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage();
+        WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
 
-        webphoneLoginPage.openWebphone(driver);
-        webphoneLoginPage.changeLanguage(driver, "English");
-        webphoneLoginPage.login(driver, "81016");
+        webphoneLoginPage.openWebphone();
+        webphoneLoginPage.changeLanguage( "English");
+        webphoneLoginPage.login("81016");
         Thread.sleep(3000);
         driver.quit();
     }
