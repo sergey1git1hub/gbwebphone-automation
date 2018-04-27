@@ -18,6 +18,7 @@ public class HubAndNodeLauncher {
             "launchNode/launch-selenium-node.bat").getCanonicalPath();
 
     private boolean launchHubAndNode = Boolean.getBoolean("launchHubAndNode");
+    private ProcessPrinter processPrinter = new ProcessPrinter();
 
 
     public HubAndNodeLauncher() throws Exception {
@@ -30,21 +31,12 @@ public class HubAndNodeLauncher {
            /* printProcessStream(launchHubProcess);*/
             Thread.sleep(2000); //waiting for hub to launch
             Process launchNodeProcess = Runtime.getRuntime().exec(new String[]{launchNodeScriptLocation});
-            printProcessStream(launchNodeProcess);
+            processPrinter.printProcessStream(launchNodeProcess);
             Thread.sleep(1000);  //waiting for node to register on hub
             System.out.println("Hub and node has been launched.");
         }
     }
 
-
-    public void printProcessStream(Process p) throws Exception {
-        String line;
-        BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        while ((line = input.readLine()) != null) {
-            System.out.println(line);
-        }
-        input.close();
-    }
 
     //Test should be written to detect any errors in process
 

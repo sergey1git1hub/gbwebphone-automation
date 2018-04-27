@@ -14,6 +14,8 @@
 
     <test name="login" preserve-order="true" parallel="false">
         <classes>
+
+            <class name="configs.BeforeAfterSuiteTest"/>
             <class name="uiLayer.login.WebphoneLoginPageTest"/>
         </classes>
     </test>

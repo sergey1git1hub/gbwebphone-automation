@@ -50,6 +50,7 @@ public class WebphoneLoginPageTest {
         testWebphoneLoginPage("chrome", "1", true);
     }*/
 
+    //Language not changed on remote PC
     @Test
     private void testIeLoginLocalVersion2() throws Exception {
         testWebphoneLoginPage("ie", "2", false);
@@ -57,25 +58,25 @@ public class WebphoneLoginPageTest {
 
 
    //Do you want to run this application prompt
-    /*@Test
+    @Test
     private void testIeLoginLocalVersion1() throws Exception {
         testWebphoneLoginPage("ie", "1", false);
-    }*/
+    }
 
 
 
     //Button continue does not work
-    /*@Test
+    @Test
     private void testIeLoginRemoteVersion2() throws Exception {
         testWebphoneLoginPage("ie", "2", true);
-    }*/
+    }
 
     //Button continue does not work
     //Do you want to run this application prompt
-    /*@Test
+    @Test
     private void testIeLoginRemoteVersion1() throws Exception {
         testWebphoneLoginPage("ie", "1", true);
-    }*/
+    }
 
     @Test
     private void testOperaLoginLocalVersion2() throws Exception {
@@ -92,9 +93,10 @@ public class WebphoneLoginPageTest {
     /*@Test
     private void testOperaLoginRemoteVersion2() throws Exception {
         testWebphoneLoginPage("opera", "2", true);
-    }
+    }*/
 
-     @Test
+    //plugin not supported by Opera
+    /* @Test
     private void testOperaLoginRemoteVersion1() throws Exception {
         testWebphoneLoginPage("opera", "1", true);
     }*/
