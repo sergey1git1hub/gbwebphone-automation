@@ -47,6 +47,7 @@ public class HubAndNodeLauncher {
 
             Process launchHubProcess = Runtime.getRuntime().exec(new String[]{launchHubScriptLocation});
            /* processPrinter.printProcessStream(launchHubProcess);*/
+            System.out.println("Hub launched.");
             Thread.sleep(2000); //waiting for hub to launch
 
             //export node sctipt
