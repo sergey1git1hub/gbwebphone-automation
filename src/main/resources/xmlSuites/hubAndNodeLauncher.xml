@@ -6,7 +6,6 @@
     <test name="configs" preserve-order="true" parallel="false">
         <classes>
             <class name="configs.HubAndNodeLauncher"/>
-
         </classes>
     </test>
 </suite>

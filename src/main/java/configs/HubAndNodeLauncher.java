@@ -30,7 +30,7 @@ public class HubAndNodeLauncher {
 
     public void launchHubAndNode() throws Exception {
         if (launchHubAndNode) {
-            String basePathInsideProject = "src\\main\\resources\\batchScriptsRefactored";
+            String basePathInsideProject = "src/main/resources/batchScriptsRefactored";
             String location;
             if(systemInfo.isLocal()){
                 location = "local";
@@ -39,7 +39,7 @@ public class HubAndNodeLauncher {
             }
 
                 launchHubScriptLocation = new File(basePathInsideProject +
-                        "\\" + location + "\\hub\\launch-selenium-hub.bat").getCanonicalPath();
+                        "/" + location + "/hub/launch-selenium-hub.bat").getCanonicalPath();
                 exportFilesScriptLocation = new File(basePathInsideProject +
                         "/" + location + "/node/export-files.bat").getCanonicalPath();
                 launchNodeScriptLocation = new File(basePathInsideProject +
