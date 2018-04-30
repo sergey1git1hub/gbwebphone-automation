@@ -41,20 +41,20 @@ public class HubAndNodeLauncher {
                 launchHubScriptLocation = new File(basePathInsideProject +
                         "\\" + location + "\\hub\\launch-selenium-hub.bat").getCanonicalPath();
                 exportFilesScriptLocation = new File(basePathInsideProject +
-                        "/" + location + "/node/launch-selenium-node.bat").getCanonicalPath();
+                        "/" + location + "/node/export-files.bat").getCanonicalPath();
                 launchNodeScriptLocation = new File(basePathInsideProject +
                         "/" + location + "/node/launch-selenium-node.bat").getCanonicalPath();
 
             Process launchHubProcess = Runtime.getRuntime().exec(new String[]{launchHubScriptLocation});
-            processPrinter.printProcessStream(launchHubProcess);
+           /* processPrinter.printProcessStream(launchHubProcess);*/
             Thread.sleep(2000); //waiting for hub to launch
 
-           /* //export node sctipt
+            //export node sctipt
 
             Process launchNodeProcess = Runtime.getRuntime().exec(new String[]{launchNodeScriptLocation});
             processPrinter.printProcessStream(launchNodeProcess);
             Thread.sleep(1000);  //waiting for node to register on hub
-            System.out.println("Hub and node has been launched.");*/
+            System.out.println("Hub and node has been launched.");
         }
     }
 

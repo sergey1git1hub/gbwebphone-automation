@@ -9,7 +9,7 @@ import java.io.File;
  */
 public class BeforeAfterSuiteTest {
 
-    private String killDriversHubScriptLocation = new File("src\\main\\resources\\batchScripts\\drivers\\kill-drivers-hub.bat").getCanonicalPath();
+    private String killDriversHubScriptLocation = new File("src\\main\\resources\\batchScripts\\drivers\\kill-drivers.bat").getCanonicalPath();
     private String killDriversNodeScriptLocation = new File("src\\main\\resources\\batchScripts\\drivers\\kill-drivers-node.bat").getCanonicalPath();
     private ProcessPrinter processPrinter = new ProcessPrinter();
 
