@@ -16,6 +16,7 @@
         <classes>
 
             <class name="configs.BeforeAfterSuiteTest"/>
+            <class name="configs.HubAndNodeLauncher"/>
             <class name="uiLayer.login.WebphoneLoginPageTest"/>
         </classes>
     </test>

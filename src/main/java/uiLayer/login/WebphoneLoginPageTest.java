@@ -15,6 +15,7 @@ public class WebphoneLoginPageTest {
         //only for testing purposes
         System.setProperty("browserName", browserName);
         System.setProperty("webphoneVersion", webphoneVersion);
+
         BrowserFactory browserFactory = new BrowserFactory();
         driver = browserFactory.getBrowser(remote);
         WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
