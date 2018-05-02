@@ -1,1 +1,1 @@
-start launch-selenium-hub1.bat
+start "C:\Users\sergey\.jenkins\workspace\gbwebphone-automation\src\main\resources\batchScriptsRefactored\jenkins\hub\launch-selenium-hub1.bat"
