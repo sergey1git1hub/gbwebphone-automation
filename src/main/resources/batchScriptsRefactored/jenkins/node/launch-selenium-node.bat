@@ -1,1 +1,1 @@
-start /D "C:\Users\sergey\.jenkins\workspace\gbwebphone-automation\src\main\resources\batchScriptsRefactored" psexec64.exe -i \\se-grid-node -s -u se-grid-node\sergey -p 123456  c:\selenium-remote\launch-selenium-node.bat
+start /D "C:\Users\sergey\.jenkins\workspace\gbwebphone-automation\src\main\resources\batchScriptsRefactored" psexec64.exe -i \\se-grid-node -s -u se-grid-node\sergey -p 123456  "c:\selenium-remote\launch-selenium-node.bat"
