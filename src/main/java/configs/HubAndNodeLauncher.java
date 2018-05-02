@@ -46,7 +46,7 @@ public class HubAndNodeLauncher {
                         "/" + location + "/node/launch-selenium-node.bat").getCanonicalPath();
 
             Process launchHubProcess = Runtime.getRuntime().exec(new String[]{launchHubScriptLocation});
-            processPrinter.printProcessStream(launchHubProcess);
+            /*processPrinter.printProcessStream(launchHubProcess);*/
            // Thread.sleep(100000);
             System.out.println("Hub launched.");
             Thread.sleep(2000); //waiting for hub to launch
