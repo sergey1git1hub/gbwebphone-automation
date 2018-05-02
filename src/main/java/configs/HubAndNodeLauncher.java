@@ -64,8 +64,6 @@ public class HubAndNodeLauncher {
 
     @Test
     private void hubAndNodeLauncherTest() throws Exception {
-        PropertiesLoader propertiesLoader  = new PropertiesLoader();
-        propertiesLoader.loadProperties();
         HubAndNodeLauncher hubAndNodeLauncher = new HubAndNodeLauncher();
         hubAndNodeLauncher.launchHubAndNode();
 

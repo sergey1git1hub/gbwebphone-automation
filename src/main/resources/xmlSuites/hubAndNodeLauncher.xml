@@ -3,6 +3,14 @@
 
 <suite name="Verify that functionlity in my classes not broken">
 
+    <test name="setup" preserve-order="true" parallel="false">
+        <classes>
+            <class name="utils.PropertiesLoader"/>
+            <class name="utils.SystemInfoTest"/>
+            <class name="configs.BeforeAfterSuiteTest"/>
+        </classes>
+    </test>
+
     <test name="configs" preserve-order="true" parallel="false">
         <classes>
             <class name="configs.HubAndNodeLauncher"/>

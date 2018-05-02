@@ -4,10 +4,11 @@
 <suite name="Verify that functionlity in my classes not broken">
 
 
-    <test name="utils" preserve-order="true" parallel="false">
+    <test name="setup" preserve-order="true" parallel="false">
         <classes>
             <class name="utils.PropertiesLoader"/>
             <class name="utils.SystemInfoTest"/>
+            <class name="configs.BeforeAfterSuiteTest"/>
         </classes>
     </test>
 
