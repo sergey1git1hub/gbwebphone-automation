@@ -30,7 +30,7 @@ public class HubAndNodeLauncher {
 
     public void launchHubAndNode() throws Exception {
         if (launchHubAndNode) {
-            String basePathInsideProject = "src/main/resources/batchScriptsRefactored";
+            String basePathInsideProject = "src/main/resources/batchScripts";
             String location;
             if(systemInfo.isLocal()){
                 location = "local";

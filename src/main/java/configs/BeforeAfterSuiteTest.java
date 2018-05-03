@@ -13,7 +13,7 @@ import java.io.File;
 public class BeforeAfterSuiteTest {
 
     SystemInfo systemInfo = new SystemInfo();
-    private String basePathInsideProject = "src/main/resources/batchScriptsRefactored";
+    private String basePathInsideProject = "src/main/resources/batchScripts";
     private String location;
     private String killDriversHubScriptLocation;
     private String killDriversNodeScriptLocation;
