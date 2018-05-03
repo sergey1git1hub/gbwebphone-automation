@@ -4,6 +4,7 @@ import configs.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+import uiLayer.login.additionalWindows.SecurityWarningWindow;
 
 /**
  * Created by SChubuk on 25.04.2018.
@@ -19,8 +20,10 @@ public class WebphoneLoginPageTest {
         BrowserFactory browserFactory = new BrowserFactory();
         driver = browserFactory.getBrowser(remote);
         WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
+        SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow(driver);
 
         webphoneLoginPage.openWebphone();
+        securityWarningWindow.acceptTheRisk();
         webphoneLoginPage.changeLanguage( "English");
         webphoneLoginPage.login("81016");
         Thread.sleep(3000);
