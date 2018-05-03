@@ -60,7 +60,11 @@ public class BeforeAfterSuiteTest {
     }
 
     private void killBrowsers() throws Exception {
+        if(systemInfo.isLocal()&&!(Boolean.getBoolean("closeBrowserOnHubIfLocal"))){
 
+        } else {
+            killBrowsersHubScriptLocation = new File(basePathInsideProject +"/kill-browsers.bat").getCanonicalPath();
+        }
         killBrowsersHubScriptLocation = new File(basePathInsideProject +"/kill-browsers.bat").getCanonicalPath();
         killBrowsersNodeScriptLocation = new File(basePathInsideProject +
                 "/" + location + "/node/kill-browsers.bat").getCanonicalPath();
