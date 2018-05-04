@@ -57,7 +57,6 @@ public class WebphonePanel {
             checkStatus(status, 2);
             //System.out.println("Host is: kv1-it-pc-jtest and browser is not Chrome.");
         } else if (systemInfo.isChrome()) {
-
             currentStatus.click();
             WebElement desirableStatus;
             if (!status.equals("AUX")) {

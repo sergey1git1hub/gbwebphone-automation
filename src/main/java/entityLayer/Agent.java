@@ -48,21 +48,24 @@ public class Agent {
         WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
         SelectGroupPage selectGroupPage = new SelectGroupPage(driver);
         WebphonePanel webphonePanel = new WebphonePanel(driver);
-        SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow(driver);
+        SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow();
         UserLogoutPanel userLogoutPanel = new UserLogoutPanel(driver);
-
         webphoneLoginPage.openWebphone();
-        securityWarningWindow.acceptTheRisk();
+        try {
+            securityWarningWindow.acceptTheRisk();
+        } catch (Exception e) {
+            loggingService.log("There is no do you want to run this application window!", "DEBUG");
+        }
         webphoneLoginPage.changeLanguage(language);
         webphoneLoginPage.login(username);
         userLogoutPanel.handleLogoutWindow();
+        loggingService.log("Handle logout window.", "DEBUG");
         selectGroupPage.selectGroup(group);
         webphonePanel.checkStatus(initialStatus, 30);
 
         loggingService.log("Login to webphone as angent" + username + "/" + group +
                 ".\n Check that initial status is " + initialStatus + ".", "INFO");
     }
-
 
 
 }

@@ -3,6 +3,7 @@
 
 <suite name="Verify that functionlity in my classes not broken" preserve-order="true">
 
+
     <test name="setup" preserve-order="true" parallel="false">
         <classes>
             <class name="utils.PropertiesLoader"/>
@@ -11,9 +12,11 @@
         </classes>
     </test>
 
-    <test name="configs" preserve-order="true" parallel="false">
+
+    <test name="login" preserve-order="true" parallel="false">
         <classes>
-            <class name="configs.HubAndNodeLauncher"/>
+            <class name="entityLayer.AgentTest"/>
         </classes>
     </test>
+
 </suite>

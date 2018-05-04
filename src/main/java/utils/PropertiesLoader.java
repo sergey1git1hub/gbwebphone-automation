@@ -55,8 +55,9 @@ public class PropertiesLoader {
         System.out.println("=============================================");
     }
 
-    @BeforeSuite
+
     @Test
+    @BeforeSuite
     private void propertiesLoaderTest(){
         PropertiesLoader propertiesLoader = new PropertiesLoader();
         propertiesLoader.loadProperties();

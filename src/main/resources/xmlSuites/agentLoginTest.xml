@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 
-<suite name="Verify that functionlity in my classes not broken">
+<suite name="Verify that functionlity in my classes not broken" preserve-order="true">
 
 
     <test name="setup" preserve-order="true" parallel="false">
@@ -15,7 +15,7 @@
 
     <test name="login" preserve-order="true" parallel="false">
         <classes>
-            <class name="entityLayer.AgentTest"/>
+            <class name="entityLayer.AgentLoginTest"/>
         </classes>
     </test>
 

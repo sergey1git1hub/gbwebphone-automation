@@ -5,27 +5,43 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import uiLayer.login.additionalWindows.SecurityWarningWindow;
+import uiLayer.login.additionalWindows.UserLogoutPanel;
+import utils.LoggingService;
+import utils.PropertiesLoader;
 
 /**
  * Created by SChubuk on 25.04.2018.
  */
 public class WebphoneLoginPageTest {
     private WebDriver driver;
+    private LoggingService loggingService = new LoggingService();
+    private PropertiesLoader propertiesLoader = new PropertiesLoader();
+    private static final String testUsername = "81016";
+
 
     private void testWebphoneLoginPage(String browserName, String webphoneVersion, boolean remote) throws Exception {
         //only for testing purposes
         System.setProperty("browserName", browserName);
         System.setProperty("webphoneVersion", webphoneVersion);
+        propertiesLoader.loadProperties();
 
         BrowserFactory browserFactory = new BrowserFactory();
         driver = browserFactory.getBrowser(remote);
         WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
-        SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow(driver);
+        SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow();
+        UserLogoutPanel userLogoutPanel = new UserLogoutPanel(driver);
 
         webphoneLoginPage.openWebphone();
-        securityWarningWindow.acceptTheRisk();
-        webphoneLoginPage.changeLanguage( "English");
-        webphoneLoginPage.login("81016");
+        try {
+            securityWarningWindow.acceptTheRisk();
+        } catch (Exception e) {
+            loggingService.log("There is no do you want to run this application window!", "DEBUG");
+        }
+        webphoneLoginPage.changeLanguage("English");
+        webphoneLoginPage.login(testUsername);
+        userLogoutPanel.handleLogoutWindow();
+        loggingService.log("Handle logout window.", "DEBUG");
+
         Thread.sleep(3000);
         driver.quit();
     }
