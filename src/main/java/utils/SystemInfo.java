@@ -24,7 +24,7 @@ public class SystemInfo {
 
     }
 
-    public static boolean isThisBrowser(String browser){
+    public boolean isThisBrowser(String browser){
         String browserName = System.getProperty("browserName");
         if (browserName.equals(browser))
             return true;
@@ -32,13 +32,13 @@ public class SystemInfo {
     }
 
 
-    public static boolean isIe() {
+    public boolean isIe() {
         return isThisBrowser("ie");
     }
-    public static boolean isChrome(){
+    public boolean isChrome(){
         return isThisBrowser("chrome");
     }
-    public static boolean isOpera(){
+    public boolean isOpera(){
         return isThisBrowser("opera");
     }
 

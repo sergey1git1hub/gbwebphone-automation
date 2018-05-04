@@ -34,8 +34,8 @@ public class NativeServiceUpdater {
         updateServiceNodeScriptLocation = new File(basePathInsideProject +
                 "/" + location + "/node/updatens.bat").getCanonicalPath();
 
-        /*Process updateServiceHubProcess = Runtime.getRuntime().exec(new String[]{updateServiceHubScriptLocation});
-        processPrinter.printProcessStream(updateServiceHubProcess);*/
+        Process updateServiceHubProcess = Runtime.getRuntime().exec(new String[]{updateServiceHubScriptLocation});
+        processPrinter.printProcessStream(updateServiceHubProcess);
         Process updateServiceNodeProcess = Runtime.getRuntime().exec(new String[]{updateServiceNodeScriptLocation});
         processPrinter.printProcessStream(updateServiceNodeProcess);
         System.out.println("Native service updated before running autotests.");

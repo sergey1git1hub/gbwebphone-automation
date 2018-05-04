@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import uiLayer.login.SelectGroupPage;
 import uiLayer.login.WebphoneLoginPage;
 import uiLayer.login.additionalWindows.SecurityWarningWindow;
+import uiLayer.login.additionalWindows.UserLogoutPanel;
 import uiLayer.webphonePanel.WebphonePanel;
 import utils.LoggingService;
 import utils.SystemInfo;
@@ -48,11 +49,13 @@ public class Agent {
         SelectGroupPage selectGroupPage = new SelectGroupPage(driver);
         WebphonePanel webphonePanel = new WebphonePanel(driver);
         SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow(driver);
+        UserLogoutPanel userLogoutPanel = new UserLogoutPanel(driver);
 
         webphoneLoginPage.openWebphone();
         securityWarningWindow.acceptTheRisk();
         webphoneLoginPage.changeLanguage(language);
         webphoneLoginPage.login(username);
+        userLogoutPanel.handleLogoutWindow();
         selectGroupPage.selectGroup(group);
         webphonePanel.checkStatus(initialStatus, 30);
 
