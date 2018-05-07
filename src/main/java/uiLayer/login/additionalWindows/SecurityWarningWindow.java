@@ -1,10 +1,7 @@
 package uiLayer.login.additionalWindows;
 
-import org.openqa.selenium.WebDriver;
 import utils.SikuliAction;
 import utils.SystemInfo;
-
-import java.beans.ExceptionListener;
 
 /**
  * Created by SChubuk on 19.04.2018.
@@ -13,15 +10,18 @@ public class SecurityWarningWindow {
 
     private SikuliAction sikuliAction = new SikuliAction();
     private SystemInfo systemInfo = new SystemInfo();
+    private static int acceptTheRiskLocalTimeout;
+    private static int acceptTheRiskJenkinsTimeout;
 
     public void acceptTheRisk() throws Exception {
-
+        acceptTheRiskLocalTimeout = Integer.getInteger("acceptTheRiskLocalTimeout");
+        acceptTheRiskJenkinsTimeout = Integer.getInteger("acceptTheRiskJenkinsTimeout");
                 if (systemInfo.isIe()) {
                     int timeout;
                     if (systemInfo.isLocal()) {
-                        timeout = 2;
+                        timeout = acceptTheRiskLocalTimeout;
                     } else {
-                        timeout = 5;
+                        timeout = acceptTheRiskJenkinsTimeout;
                     }
 
                     sikuliAction.sikuliClickElement("checkbox_acceptTheRisk", timeout);

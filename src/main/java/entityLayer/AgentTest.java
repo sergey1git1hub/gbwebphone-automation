@@ -14,14 +14,14 @@ public class AgentTest {
     private void testWebphoneChangeStatusPage(String browserName, String webphoneVersion, boolean remote) throws Exception {
         System.setProperty("browserName", browserName);
         System.setProperty("webphoneVersion", webphoneVersion);
-        Agent agent = new Agent(username, group, agentInitialStatus);
+        Agent agent = new Agent(username, group, agentInitialStatus, remote);
         agent.login();
         agent.changeStatus("Meeting");
         agent.changeStatus("Webchat");
         agent.changeStatus("AUX");
+        agent.getDriver().quit();
 
     }
-
 
     @Test
     private void testChromeChangeStatusLocalVersion2() throws Exception {
@@ -34,7 +34,7 @@ public class AgentTest {
         testWebphoneChangeStatusPage("chrome", "2", true);
     }
 
-    @Test
+  /*  @Test
     private void testIeChangeStatusLocalVersion2() throws Exception {
         testWebphoneChangeStatusPage("ie", "2", false);
     }
@@ -53,17 +53,12 @@ public class AgentTest {
     @Test
     private void testIeChangeStatusRemoteVersion1() throws Exception {
         testWebphoneChangeStatusPage("ie", "1", true);
-    }
+    }*/
 
     @Test
     private void testOperaChangeStatusLocalVersion2() throws Exception {
         testWebphoneChangeStatusPage("opera", "2", false);
     }
-
-
-
-
-
 
 
 }

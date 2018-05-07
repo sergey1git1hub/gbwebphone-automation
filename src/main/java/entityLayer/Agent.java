@@ -24,6 +24,9 @@ public class Agent {
     private String initialStatus;
     private LoggingService loggingService = new LoggingService();
     private SystemInfo systemInfo = new SystemInfo();
+    public WebDriver getDriver(){
+        return driver;
+    }
 
     //username and password passed to constructor and not to login method
     //intentionally, so it's not possible to call any method of an agent without
@@ -68,10 +71,6 @@ public class Agent {
             loggingService.log("Check that status is " + status + ".", "INFO");
         }
 
-    @AfterTest(alwaysRun = true)
-    private void teardown(){
-        driver.quit();
-    }
 
 
 }
