@@ -68,7 +68,7 @@ public class Agent {
             loggingService.log("Check that status is " + status + ".", "INFO");
         }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterTest(alwaysRun = true)
     private void teardown(){
         driver.quit();
     }
