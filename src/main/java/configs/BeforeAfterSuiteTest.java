@@ -21,6 +21,7 @@ public class BeforeAfterSuiteTest {
     private String killBrowsersHubScriptLocation;
     private String killBrowsersNodeScriptLocation;
     private PropertiesLoader propertiesLoader = new PropertiesLoader();
+    private HubAndNodeLauncher hubAndNodeLauncher = new HubAndNodeLauncher();
 
 
     private ProcessPrinter processPrinter = new ProcessPrinter();
@@ -34,7 +35,7 @@ public class BeforeAfterSuiteTest {
     private void setup() throws Exception {
         //should go first because it loads the localhostName property
         propertiesLoader.loadProperties();
-
+        hubAndNodeLauncher.launchHubAndNode();
         if (systemInfo.isLocal()) {
             location = "local";
         } else {
