@@ -1,16 +1,14 @@
 package uiLayer.webphonePanel;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
 import utils.*;
 
-import java.io.UnsupportedEncodingException;
-import java.net.UnknownHostException;
 import java.util.regex.Pattern;
 
 /**
@@ -43,7 +41,7 @@ public class WebphonePanel {
 
     }
 
-    public void changeStatus(String status) throws Exception{
+    public void changeStatus(String status) throws Exception {
 
         By currentStatusSelector = By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c");
@@ -95,14 +93,95 @@ public class WebphonePanel {
             sikuliAction.sikuliClickElement("auxStatus");
             waiter.wait(1000);
         }
+    }
 
+    public WebDriver clickButtonAccept(int waitTime, boolean isPreview) throws InterruptedException {
+
+        WebDriverWait waitForButtonAccept = new WebDriverWait(driver, waitTime);
+        String idValue;
+        if (isPreview) {
+            idValue = "btn_preview_accept";
+        } else {
+            idValue = "btn_accept";
+        }
+        driver.switchTo().defaultContent();
+        //OR condition in css selector might be used
+        By byIdAccept = By.cssSelector("[id = '" + idValue + "']");
+        waitForButtonAccept.until(ExpectedConditions.elementToBeClickable(byIdAccept));
+        WebElement button_Accept = driver.findElement(byIdAccept);
+        //if not wait, CRM card not opened
+        Thread.sleep(500);
+        if (systemInfo.isIe()) {
+            jsExecutor.executeJavaScriptOrClick(button_Accept);
+        } else {
+            button_Accept.click();
+        }
+        return driver;
+    }
+
+    public void agentHangup(int line) throws Exception {
+        switchLine(line);
+        waiter.wait(1000, 500);
+        WebElement button_Hangup = driver.findElement(By.cssSelector("#btn_hangup"));
+        jsExecutor.executeJavaScriptOrClick(button_Hangup, "arguments[0].click();");
+    }
+
+    public void switchLine(int line) throws Exception {
+        if (driver.equals("chrome") && systemInfo.isLocal()) {
+            WebDriverWait waitForLineElement = new WebDriverWait(driver, 2);
+            waitForLineElement.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[id = 'btn_line_" + line + "_span']")));
+            WebElement lineElement = driver.findElement(By.cssSelector("[id = 'btn_line_" + line + "_span']"));
+            Thread.sleep(1000);
+            System.out.println("Slept 1000 ms.");
+            lineElement.click();
+        } else {
+            /*System.out.println("Browser is not chrome or running on Jenkns.");
+            if (!isLocal()) {
+                WebElement lineElement = driver.findElement(By.cssSelector("[id = 'btn_line_" + line + "_span']"));
+                lineElement.sendKeys(Keys.ENTER);
+            } else*/
+
+            if (driver instanceof JavascriptExecutor) {
+                ((JavascriptExecutor) driver)
+                        .executeScript("wp_common.wp_ChangeLine(" + line + "); log(event);");
+                System.out.println("Line switched by javascript.");
+            }
+        }
+    }
+
+    public  void hold(WebDriver driver) throws Exception {
+
+        WebElement button_Hold = driver.findElement(By.cssSelector("#btn_hold"));
+        jsExecutor.executeJavaScriptOrClick(button_Hold, "wp_common.wp_HoldOrVoicemail();log(event);" +
+                "PrimeFaces.ab({source:'btn_hold'});return false;");
+        checkStatus("Onhold", 6);
 
     }
 
+    public  void unhold(WebDriver driver) throws Exception {
+        WebElement button_Hold = driver.findElement(By.cssSelector("#btn_hold"));
+        jsExecutor.executeJavaScriptOrClick(button_Hold, "wp_common.wp_HoldOrVoicemail();log(event);" +
+                "PrimeFaces.ab({source:'btn_hold'});return false;");
+        checkStatus("Incall", 6);
+    }
 
+    public  void mute(WebDriver driver) throws Exception {
+        WebElement button_Mute = driver.findElement(By.cssSelector("#btn_mute"));
+        jsExecutor.executeJavaScriptOrClick(button_Mute, "wp_common.wp_HoldOrVoicemail();log(event);" +
+                "PrimeFaces.ab({source:'btn_hold'});return false;");
+        checkStatus("Muted", 6);
+    }
 
+    public  void unmute(WebDriver driver) throws Exception {
+        WebElement button_Mute = driver.findElement(By.cssSelector("#btn_mute"));
+        jsExecutor.executeJavaScriptOrClick(button_Mute, "wp_common.wp_HoldOrVoicemail();log(event);" +
+                "PrimeFaces.ab({source:'btn_hold'});return false;");
+        checkStatus("Incall", 6);
+
+    }
 
 }
+
 
 
 

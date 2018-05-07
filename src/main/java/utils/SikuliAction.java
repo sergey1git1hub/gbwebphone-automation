@@ -7,15 +7,16 @@ import org.sikuli.script.Screen;
  * Created by SChubuk on 20.04.2018.
  */
 public class SikuliAction {
+    private String sikuliImagesLocation;
 
-    public static void sikuliClickElement(String elementName) throws Exception {
+    public void sikuliClickElement(String elementName) throws Exception {
         sikuliClickElement(elementName, 10);
     }
 
-    public static void sikuliClickElement(String elementName, int timeout) throws Exception {
-
+    public void sikuliClickElement(String elementName, int timeout) throws Exception {
+        sikuliImagesLocation = System.getProperty("sikuliImagesLocation");
         Screen screen = new Screen();
-        org.sikuli.script.Pattern element = new org.sikuli.script.Pattern("C:\\SikuliImages\\" + elementName + ".png");
+        org.sikuli.script.Pattern element = new org.sikuli.script.Pattern(sikuliImagesLocation + "\\" + elementName + ".png");
         screen.wait(element, timeout);
         screen.click(element);
 

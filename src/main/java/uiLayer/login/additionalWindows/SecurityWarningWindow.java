@@ -23,7 +23,6 @@ public class SecurityWarningWindow {
                     } else {
                         timeout = acceptTheRiskJenkinsTimeout;
                     }
-
                     sikuliAction.sikuliClickElement("checkbox_acceptTheRisk", timeout);
                     sikuliAction.sikuliClickElement("button_Run", timeout);
                 }

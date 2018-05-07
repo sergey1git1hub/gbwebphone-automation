@@ -7,15 +7,21 @@ public class Waiter {
     //Thread.sleep used where pause is necessary and could not be skipped by
     //setting run.slow to false
 
-    public static void wait(int timeMilliseconds)  {
-        Boolean slow = Boolean.getBoolean("run.slow");
+    public void wait(int timeMilliseconds)  {
+        wait(timeMilliseconds,0);
+    }
+
+    public void wait(int optionalTimeMilliseconds, int requiredTimeMilliseconds){
+        Boolean slow = Boolean.getBoolean("runFast");
+        try {
         if(slow){
-            try {
-                Thread.sleep(timeMilliseconds);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                Thread.sleep(optionalTimeMilliseconds);
         }
+            Thread.sleep(requiredTimeMilliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

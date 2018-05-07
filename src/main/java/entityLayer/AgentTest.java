@@ -20,7 +20,6 @@ public class AgentTest {
         agent.changeStatus("Webchat");
         agent.changeStatus("AUX");
         agent.getDriver().quit();
-
     }
 
     @Test
