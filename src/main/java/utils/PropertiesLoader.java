@@ -57,7 +57,6 @@ public class PropertiesLoader {
 
 
     @Test
-    @BeforeSuite
     private void propertiesLoaderTest(){
         PropertiesLoader propertiesLoader = new PropertiesLoader();
         propertiesLoader.loadProperties();

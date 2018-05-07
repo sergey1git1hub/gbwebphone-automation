@@ -16,11 +16,16 @@ public class UpdateJavaLaterWindow {
         Thread thread2 = new Thread() {
             public void run() {
                 try {
-                    sikuliAction.sikuliClickElement("option_updateJavaLater", 2);
-                    if (systemInfo.isLocal()) {
-                        sikuliAction.sikuliClickElement("checkbox_doNotAskAgain", 2);
-                    } else {
-                        sikuliAction.sikuliClickElement("checkbox_doNotAskAgain", 5);
+
+                    if (systemInfo.isIe()) {
+                        int timeout;
+                        if (systemInfo.isLocal()) {
+                            timeout = 2;
+                        } else {
+                            timeout = 5;
+                        }
+                        sikuliAction.sikuliClickElement("checkbox_doNotAskAgain", timeout);
+                        sikuliAction.sikuliClickElement("option_updateJavaLater", timeout);
                     }
 
                 } catch (Exception e) {

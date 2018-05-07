@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import uiLayer.login.additionalWindows.SecurityWarningWindow;
 import uiLayer.login.additionalWindows.UserLogoutPanel;
 import utils.LoggingService;
-import utils.PropertiesLoader;
 
 /**
  * Created by SChubuk on 25.04.2018.
@@ -15,7 +14,6 @@ import utils.PropertiesLoader;
 public class WebphoneLoginPageTest {
     private WebDriver driver;
     private LoggingService loggingService = new LoggingService();
-    private PropertiesLoader propertiesLoader = new PropertiesLoader();
     private static final String testUsername = "81016";
 
 
@@ -23,24 +21,20 @@ public class WebphoneLoginPageTest {
         //only for testing purposes
         System.setProperty("browserName", browserName);
         System.setProperty("webphoneVersion", webphoneVersion);
-        propertiesLoader.loadProperties();
 
         BrowserFactory browserFactory = new BrowserFactory();
         driver = browserFactory.getBrowser(remote);
         WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
         SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow();
         UserLogoutPanel userLogoutPanel = new UserLogoutPanel(driver);
-
         webphoneLoginPage.openWebphone();
-        try {
-            securityWarningWindow.acceptTheRisk();
-        } catch (Exception e) {
-            loggingService.log("There is no do you want to run this application window!", "DEBUG");
-        }
         webphoneLoginPage.changeLanguage("English");
         webphoneLoginPage.login(testUsername);
-        userLogoutPanel.handleLogoutWindow();
-        loggingService.log("Handle logout window.", "DEBUG");
+        try {
+            userLogoutPanel.handleLogoutWindow();
+        } catch (Exception e) {
+            loggingService.log("Handle logout window.", "DEBUG");
+        }
 
         Thread.sleep(3000);
         driver.quit();
@@ -54,10 +48,11 @@ public class WebphoneLoginPageTest {
 
 
    //Plugin not supported by chrome
-   /* @Test
+/* @Test
     private void testChromeLoginLocalVersion1() throws Exception {
         testWebphoneLoginPage("chrome", "1", false);
     }*/
+
 
     @Test
     private void testChromeLoginRemoteVersion2() throws Exception {
@@ -65,10 +60,11 @@ public class WebphoneLoginPageTest {
     }
 
     //Plugin not supported by chrome
-    /*@Test
+/*@Test
     private void testChromeLoginRemoteVersion1() throws Exception {
         testWebphoneLoginPage("chrome", "1", true);
     }*/
+
 
     //Language not changed on remote PC
     @Test

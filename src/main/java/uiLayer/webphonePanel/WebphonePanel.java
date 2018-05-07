@@ -19,7 +19,6 @@ import java.util.regex.Pattern;
 public class WebphonePanel {
     private WebDriver driver;
     private JSExecutor jsExecutor;
-
     private SystemInfo systemInfo = new SystemInfo();
     private SikuliAction sikuliAction = new SikuliAction();
     private Waiter waiter = new Waiter();
@@ -40,7 +39,7 @@ public class WebphonePanel {
         WebElement currentStatus = driver.findElement(By.cssSelector(
                 "#statusButton > span.ui-button-text.ui-c"));
         Assert.assertTrue(currentStatus.getText().contains(status));
-       // log("Check that status is " + status + ".", "INFO");
+
 
     }
 
@@ -54,7 +53,6 @@ public class WebphonePanel {
         WebElement currentStatus = driver.findElement(currentStatusSelector);
         if (!systemInfo.isLocal() && systemInfo.isIe()) {
             changeStatusNewDontWork(status);
-            checkStatus(status, 2);
             //System.out.println("Host is: kv1-it-pc-jtest and browser is not Chrome.");
         } else if (systemInfo.isChrome()) {
             currentStatus.click();
@@ -67,7 +65,6 @@ public class WebphonePanel {
                         "//*[contains(text(),'AUX') and not(contains(text(),'Доступен'))]"));
             }
             desirableStatus.click();
-            checkStatus(status, 2);
             // System.out.println("Browser is Chrome.");
         } else {
             jsExecutor.executeJavaScriptOrClick(currentStatus);
@@ -80,8 +77,8 @@ public class WebphonePanel {
                         "//*[contains(text(),'AUX') and not(contains(text(),'Доступен'))]"));
             }
             jsExecutor.executeJavaScriptOrClick(desirableStatus);
-            checkStatus(status, 2);
         }
+        checkStatus(status, 2);
     }
 
     public void changeStatusNewDontWork(String status) throws Exception {
@@ -99,7 +96,6 @@ public class WebphonePanel {
             waiter.wait(1000);
         }
 
-        checkStatus(status, 2);
 
     }
 

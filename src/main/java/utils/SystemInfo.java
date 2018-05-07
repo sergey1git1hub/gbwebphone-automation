@@ -10,10 +10,11 @@ import java.net.InetAddress;
 
 public class SystemInfo {
 
-    private String localhostName = System.getProperty("localhostName");
+    private String localhostName;
 
     public boolean isLocal() {
         String hostName = "";
+        localhostName = System.getProperty("localhostName");
         try{
             hostName= InetAddress.getLocalHost().getHostName();
         } catch (Exception e){

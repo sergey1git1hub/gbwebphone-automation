@@ -2,6 +2,8 @@ package entityLayer;
 
 import configs.BrowserFactory;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import uiLayer.login.SelectGroupPage;
 import uiLayer.login.WebphoneLoginPage;
 import uiLayer.login.additionalWindows.SecurityWarningWindow;
@@ -45,26 +47,30 @@ public class Agent {
     }
 
     public void login() throws Exception {
+
         WebphoneLoginPage webphoneLoginPage = new WebphoneLoginPage(driver);
         SelectGroupPage selectGroupPage = new SelectGroupPage(driver);
         WebphonePanel webphonePanel = new WebphonePanel(driver);
-        SecurityWarningWindow securityWarningWindow = new SecurityWarningWindow();
-        UserLogoutPanel userLogoutPanel = new UserLogoutPanel(driver);
         webphoneLoginPage.openWebphone();
-        try {
-            securityWarningWindow.acceptTheRisk();
-        } catch (Exception e) {
-            loggingService.log("There is no do you want to run this application window!", "DEBUG");
-        }
         webphoneLoginPage.changeLanguage(language);
         webphoneLoginPage.login(username);
-        userLogoutPanel.handleLogoutWindow();
-        loggingService.log("Handle logout window.", "DEBUG");
         selectGroupPage.selectGroup(group);
         webphonePanel.checkStatus(initialStatus, 30);
 
         loggingService.log("Login to webphone as angent" + username + "/" + group +
                 ".\n Check that initial status is " + initialStatus + ".", "INFO");
+    }
+
+        public void changeStatus(String status) throws Exception {
+            WebphonePanel webphonePanel = new WebphonePanel(driver);
+            webphonePanel.changeStatus(status);
+            loggingService.log("Change Staatus to " + status + ".", "INFO");
+            loggingService.log("Check that status is " + status + ".", "INFO");
+        }
+
+    @AfterMethod(alwaysRun = true)
+    private void teardown(){
+        driver.quit();
     }
 
 

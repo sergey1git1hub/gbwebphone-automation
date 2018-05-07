@@ -2,6 +2,7 @@ package configs;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import utils.PropertiesLoader;
 import utils.SystemInfo;
 
 import java.io.File;
@@ -19,29 +20,32 @@ public class BeforeAfterSuiteTest {
     private String killDriversNodeScriptLocation;
     private String killBrowsersHubScriptLocation;
     private String killBrowsersNodeScriptLocation;
+    private PropertiesLoader propertiesLoader = new PropertiesLoader();
 
 
     private ProcessPrinter processPrinter = new ProcessPrinter();
 
 
     public BeforeAfterSuiteTest() throws Exception {
-        if(systemInfo.isLocal()){
+        //class constructor not called by testng
+    }
+
+    @BeforeSuite(alwaysRun = true)
+    private void setup() throws Exception {
+        //should go first because it loads the localhostName property
+        propertiesLoader.loadProperties();
+
+        if (systemInfo.isLocal()) {
             location = "local";
         } else {
             location = "jenkins";
         }
-    }
-
-    @BeforeSuite(alwaysRun=true)
-    private void setup() throws Exception {
-        System.out.println("BEFORE SUITE.");
         killDrivers();
         killBrowsers();
     }
 
-    @AfterSuite(alwaysRun=true)
+    @AfterSuite(alwaysRun = true)
     private void teardown() throws Exception {
-        System.out.println("AFTER SUITE.");
         killDrivers();
         killBrowsers();
 
@@ -49,7 +53,7 @@ public class BeforeAfterSuiteTest {
 
     private void killDrivers() throws Exception {
 
-        killDriversHubScriptLocation = new File(basePathInsideProject +"/kill-drivers.bat").getCanonicalPath();
+        killDriversHubScriptLocation = new File(basePathInsideProject + "/kill-drivers.bat").getCanonicalPath();
         killDriversNodeScriptLocation = new File(basePathInsideProject +
                 "/" + location + "/node/kill-drivers.bat").getCanonicalPath();
 
@@ -60,17 +64,17 @@ public class BeforeAfterSuiteTest {
     }
 
     private void killBrowsers() throws Exception {
-        if(systemInfo.isLocal()&&!(Boolean.getBoolean("closeBrowserOnHubIfLocal"))){
 
-        } else {
-            killBrowsersHubScriptLocation = new File(basePathInsideProject +"/kill-browsers.bat").getCanonicalPath();
-        }
-        killBrowsersHubScriptLocation = new File(basePathInsideProject +"/kill-browsers.bat").getCanonicalPath();
+        killBrowsersHubScriptLocation = new File(basePathInsideProject + "/kill-browsers.bat").getCanonicalPath();
         killBrowsersNodeScriptLocation = new File(basePathInsideProject +
                 "/" + location + "/node/kill-browsers.bat").getCanonicalPath();
 
-        Process killDriversHubProcess = Runtime.getRuntime().exec(new String[]{killBrowsersHubScriptLocation});
-        processPrinter.printProcessStream(killDriversHubProcess);
+        if (systemInfo.isLocal() && !(Boolean.getBoolean("closeBrowserOnHubIfLocal"))) {
+
+        } else {
+            Process killDriversHubProcess = Runtime.getRuntime().exec(new String[]{killBrowsersHubScriptLocation});
+            processPrinter.printProcessStream(killDriversHubProcess);
+        }
         Process killDriversNodeProcess = Runtime.getRuntime().exec(new String[]{killBrowsersNodeScriptLocation});
         processPrinter.printProcessStream(killDriversNodeProcess);
 

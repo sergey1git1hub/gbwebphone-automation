@@ -3,19 +3,11 @@
 
 <suite name="Verify that functionlity in my classes not broken" preserve-order="true">
 
-
-    <test name="setup" preserve-order="true" parallel="false">
-        <classes>
-            <class name="utils.PropertiesLoader"/>
-            <class name="utils.SystemInfoTest"/>
-            <class name="configs.BeforeAfterSuiteTest"/>
-        </classes>
-    </test>
-
-
     <test name="login" preserve-order="true" parallel="false">
         <classes>
+            <class name="configs.BeforeAfterSuiteTest"/>
             <class name="entityLayer.AgentTest"/>
+            <class name="entityLayer.Agent"/>
         </classes>
     </test>
 

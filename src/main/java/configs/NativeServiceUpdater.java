@@ -44,8 +44,6 @@ public class NativeServiceUpdater {
     //independent of launching node and hub
     @Test
     private void updateNativeServiceTest() throws Exception {
-        PropertiesLoader propertiesLoader = new PropertiesLoader();
-        propertiesLoader.loadProperties();
         NativeServiceUpdater nativeServiceUpdater = new NativeServiceUpdater();
         nativeServiceUpdater.updateNativeService();
     }
