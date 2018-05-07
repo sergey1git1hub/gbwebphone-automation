@@ -67,10 +67,9 @@ public class Agent {
         public void changeStatus(String status) throws Exception {
             WebphonePanel webphonePanel = new WebphonePanel(driver);
             webphonePanel.changeStatus(status);
-            loggingService.log("Change Staatus to " + status + ".", "INFO");
+            loggingService.log("Change Status to " + status + ".", "INFO");
             loggingService.log("Check that status is " + status + ".", "INFO");
         }
-
 
 
 }
